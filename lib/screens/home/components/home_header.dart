@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:skl_pertama/models/Cart.dart';
 import 'package:skl_pertama/screens/cart/cart_screen.dart';
-
 import '../../../size_config.dart';
 import 'icon_btn_with_counter.dart';
 import 'search_field.dart';
+
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -21,11 +22,12 @@ class HomeHeader extends StatelessWidget {
           SearchField(),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Cart Icon.svg",
+            numOfitem: demoCarts.length, 
             press: () => Navigator.pushNamed(context, CartScreen.routeName),
           ),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Bell.svg",
-            numOfitem: 3,
+            numOfitem: 2,
             press: () {},
           ),
         ],

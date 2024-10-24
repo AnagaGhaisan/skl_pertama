@@ -16,58 +16,64 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color inActiveIconColor = Color(0xFFB6B6B6);
+    final Color inActiveIconColor = const Color(0xFFB6B6B6);
+    final Color activeIconColor = kPrimaryColor;
+
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 14),
+      margin: const EdgeInsets.only(bottom: 20), // Create gap at the bottom
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20), // Add horizontal padding for floating look
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.white,  // Background color of the bottom nav bar
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, -15),
-            blurRadius: 20,
-            color: Color(0xFFDADADA).withOpacity(0.15),
+            offset: Offset(0, 15), // Make shadow appear below the nav bar
+            blurRadius: 30, // Larger blur for more dramatic floating effect
+            color: Colors.black.withOpacity(0.25), // Shadow color with transparency
           ),
         ],
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(40), // Full circular borders to match the design
         ),
       ),
       child: SafeArea(
-          top: false,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
-                  color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, HomeScreen.routeName),
+        top: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/Shop Icon.svg",
+                color: MenuState.home == selectedMenu
+                    ? activeIconColor
+                    : inActiveIconColor,
               ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-                onPressed: () {},
+              onPressed: () => Navigator.pushNamed(context, HomeScreen.routeName),
+            ),
+            IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/Heart Icon.svg",
+                color: MenuState.wishlist == selectedMenu
+                    ? activeIconColor
+                    : inActiveIconColor,
               ),
-              IconButton(
+              onPressed: () {},
+            ),
+            IconButton(
                 icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
                 onPressed: () {},
               ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/User Icon.svg",
-                  color: MenuState.profile == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, ProfileScreen.routeName),
+            IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/User Icon.svg",
+                color: MenuState.profile == selectedMenu
+                    ? activeIconColor
+                    : inActiveIconColor,
               ),
-            ],
-          )),
+              onPressed: () => Navigator.pushNamed(context, ProfileScreen.routeName),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

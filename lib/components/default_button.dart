@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 import '../size_config.dart';
 
@@ -9,6 +8,7 @@ class DefaultButton extends StatelessWidget {
     this.text,
     this.press,
   }) : super(key: key);
+
   final String? text;
   final Function? press;
 
@@ -19,8 +19,8 @@ class DefaultButton extends StatelessWidget {
       height: getProportionateScreenHeight(56),
       child: TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Colors.white, shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           backgroundColor: kPrimaryColor,
         ),
         onPressed: press as void Function()?,
